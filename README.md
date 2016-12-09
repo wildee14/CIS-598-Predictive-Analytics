@@ -12,8 +12,7 @@ The goal of this web app is to create a predictive analytics tool that will look
 
 The tools that will be used for this project include:
 * General Web techonologies (HTML, CSS, Javascript, Jquery)
-* Passport.js/Express.js/Node.js for user authentication middleware
-* SASS for CSS compiling
-* React for general styling of the page
+* PHP CURL Requests for user authentication 
+* Bootstrap for general styling of the page
 * (Possibly) Google Analytics API
-* MapReduce using Hadoop for condensing data   
+* (Possibly)MapReduce using Hadoop for condensing data   

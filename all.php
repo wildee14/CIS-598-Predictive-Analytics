@@ -34,8 +34,8 @@ echo '<img class="img-responsive img-rounded center-block" src="'.$img.'"/><br><
 $access_token = $user['access_token'];
 $name = $user['user']['username'];
 $servername = "localhost";
-$username = "root";
-$password = "Soccer20*";
+$username = "xxxxxx";
+$password = "xxxxxx";
 $database = "instagram";
 
 // Create connection
