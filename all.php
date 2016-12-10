@@ -30,12 +30,13 @@ echo '<h1 class="text-center">';
 //echo print_r($user).'<br>';
 echo 'Welcome, <code>'.$user['user']['username'].'</code></h1>';
 $img = $user['user']['profile_picture'];
-echo '<img class="img-responsive img-rounded center-block" src="'.$img.'"/><br><hr><br>';
+//echo '<img class="img-responsive img-rounded center-block" src="'.$img.'"/><br><hr><br>';
 $access_token = $user['access_token'];
+echo $access_token;
 $name = $user['user']['username'];
 $servername = "localhost";
-$username = "xxxxxx";
-$password = "xxxxxx";
+$username = "xxxxxxx";
+$password = "xxxxxxx";
 $database = "instagram";
 
 // Create connection
@@ -44,6 +45,45 @@ $conn = mysqli_connect($servername, $username, $password,$database);
 if (!$conn) {
     echo die("Connection failed: " . mysqli_connect_error());
 }
+
+$sql4 = "SELECT count(*) as count FROM `tweets` WHERE user='".$user['user']['username']."'";
+$res = mysqli_query($conn, $sql4);
+while($row2 = mysqli_fetch_array($res)){
+echo '<h3 class="text-center text-alert"><kbd>Number of Posts: '.$row2["count"].'</kbd></h3><img class="img-responsive img-rounded center-block" src="'.$img.'"/>';
+}
+
+$retun = rudr_instagram_api_curl_connect('https://api.instagram.com/v1/users/self/media/liked?access_token=' . $access_token);
+$dat = $retun['data'];
+$lat = 123;
+$long = 234;
+foreach ($dat as $post ) {
+        echo '<h3 class="text-center bg-success">Location: '.($dat['0']['location']['name']).'</h3>';
+	$loc_id = ($dat['0']['location']['id']);
+	$lat = $dat['0']['location']['latitude'];
+        $long = $dat['0']['location']['longitude'];
+}
+echo'
+<div class="col-md-6"" id="map"></div>
+<script>
+      function initMap() {
+        var uluru = {lat: '.$lat. ', lng: '.$long.'};
+        var map = new google.maps.Map(document.getElementById(\'map\'), {
+          zoom: 10,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-2ss-BTJYlrBobo6cvXUY4Hzr5AW2cyQ&callback=initMap">
+    </script>';
+
+echo '<br><hr><br>';
+
+//reference https://rudrastyh.com/php/instagram-api-recent-photos.html
 function rudr_instagram_api_curl_connect( $api_url ){
 	$connection_c = curl_init(); // initializing
 	curl_setopt( $connection_c, CURLOPT_URL, $api_url ); // API URL to connect
@@ -83,13 +123,7 @@ if (mysqli_query($conn, $sql2)) {
 }
 
 }
-$sql4 = "SELECT * FROM `tweets` WHERE user =" . $name;
-$res = mysqli_query($conn, $sql4);
-//echo $sql4;
-while($row = mysqli_fetch_assoc($res)) {
-     echo print_r($row).$sql4;
-}
-$sql3 = "select * from tweets where user ='". $name."' order by likes asc";
+$sql3 = "select * from tweets where user ='". $name."' order by likes desc";
 //echo $sql3;
 $result = mysqli_query($conn, $sql3);
 
