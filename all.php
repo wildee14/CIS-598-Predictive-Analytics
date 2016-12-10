@@ -35,8 +35,8 @@ $access_token = $user['access_token'];
 echo $access_token;
 $name = $user['user']['username'];
 $servername = "localhost";
-$username = "root";
-$password = "Soccer20*";
+$username = "xxxxxxx";
+$password = "xxxxxxx";
 $database = "instagram";
 
 // Create connection
