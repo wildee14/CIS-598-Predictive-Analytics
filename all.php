@@ -32,11 +32,10 @@ echo 'Welcome, <code>'.$user['user']['username'].'</code></h1>';
 $img = $user['user']['profile_picture'];
 //echo '<img class="img-responsive img-rounded center-block" src="'.$img.'"/><br><hr><br>';
 $access_token = $user['access_token'];
-echo $access_token;
 $name = $user['user']['username'];
 $servername = "localhost";
-$username = "xxxxxxx";
-$password = "xxxxxxx";
+$username = "xxxxxxxx";
+$password = "xxxxxxxx";
 $database = "instagram";
 
 // Create connection
@@ -81,8 +80,6 @@ echo'
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-2ss-BTJYlrBobo6cvXUY4Hzr5AW2cyQ&callback=initMap">
     </script>';
 
-echo '<br><hr><br>';
-
 //reference https://rudrastyh.com/php/instagram-api-recent-photos.html
 function rudr_instagram_api_curl_connect( $api_url ){
 	$connection_c = curl_init(); // initializing
@@ -93,9 +90,10 @@ function rudr_instagram_api_curl_connect( $api_url ){
 	curl_close( $connection_c ); // close connection
 	return json_decode( $json_return ,true); // decode and return
 }
+
 $return = rudr_instagram_api_curl_connect('https://api.instagram.com/v1/users/self/media/recent?access_token=' . $access_token);
 $data = $return['data'];
-
+$totalTags = "";
 
 foreach ($data as $post ) {
         $caption = mysqli_real_escape_string($conn,$post['caption']['text']);
@@ -111,6 +109,7 @@ foreach ($data as $post ) {
                 $ta.= ' '.$tag;
                 }
         }
+	$totalTags .=$ta;
 
         //echo($caption. $userid.' '.$username.' '.substr($image,-15)." likes: ".$likes.' Tags: '. $ta.' Time: '.$time.'<br>');
 $sql2 = "INSERT INTO `tweets` (`img_src`,`caption`,`userid`,`user`,`tags`,`likes`,`time`)
@@ -123,6 +122,8 @@ if (mysqli_query($conn, $sql2)) {
 }
 
 }
+echo '<br><pre><h3 class="text-center">Total Tags:'.$totalTags.'</h3></pre><hr><br>';
+
 $sql3 = "select * from tweets where user ='". $name."' order by likes desc";
 //echo $sql3;
 $result = mysqli_query($conn, $sql3);

@@ -7,6 +7,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-right navbar-header">
+      <a class="navbar-brand" href="./authorize.php">Instagram Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="./authorize.php">Home</a></li>
+      <li class="active"><a href="./index.php">Query</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="container">
 <?php 

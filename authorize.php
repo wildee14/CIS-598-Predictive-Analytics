@@ -7,13 +7,25 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-right  navbar-header">
+      <a class="navbar-brand" href="./authorize.php">Instagram Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="./authorize.php">Home</a></li>
+      <li><a href="./index.php">Query</a></li>
+    </ul>
+  </div>
+</nav>
+
 
 <div class="container center-block">
 	<h1>Authenticate User For Analytics</h1><br>
 	<img class="img-responsive" src= "https://lh3.googleusercontent.com/aYbdIM1abwyVSUZLDKoE0CDZGRhlkpsaPOg9tNnBktUQYsXflwknnOn2Ge1Yr7rImGk=w300" width =200 height=200  border="5"/>
 	<br>
 	<div class="item center-block nav-justified "> 
-	  <a href="https://api.instagram.com/oauth/authorize/?client_id=bbf9d5179ff24ceea0d41e9bf7b6651b&amp&redirect_uri=http://138.197.20.231/index.php&response_type=code&scope=basic+public_content+comments+likes+relationships">
+	  <a href="https://api.instagram.com/oauth/authorize/?client_id=bbf9d5179ff24ceea0d41e9bf7b6651b&amp&redirect_uri=http://138.197.20.231/index.php&response_type=code&scope=basic+public_content+comments+likes+relationships+follower_list">
  	  <button class="btn btn-primary">Authorize Instagram</button></a>
 	</div>
 </div>
