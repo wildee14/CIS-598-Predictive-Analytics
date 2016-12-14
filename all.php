@@ -61,6 +61,7 @@ foreach ($dat as $post ) {
 	$lat = $dat['0']['location']['latitude'];
         $long = $dat['0']['location']['longitude'];
 }
+if($lat != 123){
 echo'
 <div class="col-md-6"" id="map"></div>
 <script>
@@ -79,7 +80,7 @@ echo'
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-2ss-BTJYlrBobo6cvXUY4Hzr5AW2cyQ&callback=initMap">
     </script>';
-
+}
 //reference https://rudrastyh.com/php/instagram-api-recent-photos.html
 function rudr_instagram_api_curl_connect( $api_url ){
 	$connection_c = curl_init(); // initializing
